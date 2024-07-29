@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/projeto32024/modelo/dao/BDPDO.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/projeto32024/modelo/vo/Usuario.php';
 
 class UsuarioDAO {
-
+    
     public function insert($usuario) {
         try {
             $sql = "INSERT INTO usuario (nome,email,login,senha) "
