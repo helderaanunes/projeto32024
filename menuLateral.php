@@ -53,7 +53,7 @@
                 <div id="collapseUsuario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="usuarioAddEdit.php">Adicionar</a>
-                        <a class="collapse-item" href="usuarioList.html">Listar</a>
+                        <a class="collapse-item" href="usuarioList.php">Listar</a>
                     </div>
                 </div>
             </li>

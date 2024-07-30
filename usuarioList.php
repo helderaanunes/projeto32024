@@ -1,17 +1,3 @@
-<?php 
- require_once $_SERVER['DOCUMENT_ROOT'] . 
-        '/projeto32024/modelo/dao/UsuarioDAO.php';
- 
- $obj = NULL;
- 
- if (isset($_GET['id'])){
-     $dao = new UsuarioDAO();
-     $obj=$dao->getById($_GET['id']);
- }
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,9 +31,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php 
-        include 'menuLateral.php';
-        ?>
+   <?php include './menuLateral.php';?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -266,33 +250,65 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                   
+                    
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Adicionar Usuário</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Listar Usuários</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <form action="controle/usuarioControl.php" method="post">
-                                    <div>
-                                        Nome: <input type="text" value="<?php echo $obj==NULL?"":$obj->getNome(); ?>" name="nome" class="form-control mb-2"/>
-                                    </div>
-                                    <div>
-                                        E-mail:<input type="email" value="<?php echo $obj==NULL?"":$obj->getEmail(); ?>" name="email" class="form-control mb-2"/>
-                                    </div>
-                                    <div>
-                                        Senha: <input type="password" name="senha" class="form-control mb-2"/>
-                                    </div>
-                                    <div>
-                                        <button type="submit"class="btn btn-success btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-save"></i>
-                                            </span>
-                                            <span class="text">Salvar</span>
-                                        </button>
-                                    </div>
-                                </form>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Nome</th>
+                                            <th>E-mail</th>
+                                            <th>Login</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Nome</th>
+                                            <th>E-mail</th>
+                                            <th>Login</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <?php 
+                                        require_once $_SERVER['DOCUMENT_ROOT'] . 
+        '/projeto32024/modelo/dao/UsuarioDAO.php';
+                                        $dao = new UsuarioDAO();
+                                        $lista = $dao->listAll();
+                                        foreach ($lista as $item){
+                                            echo "<tr>".
+                                                "<td>".$item->getId()."</td>".
+                                                "<td>".$item->getNome()."</td>".
+                                                "<td>".$item->getEmail()."</td>".
+                                                "<td>".$item->getLogin()."</td>".
+                                                "<td> 
+                                                    <a href='./usuarioAddEdit.php?id=".$item->getId()."' class='btn btn-warning btn-icon-split'>
+                                                        <span class='icon text-white-50'>
+                                                            <i class='fas fa-pen'></i>
+                                                        </span>
+                                                        <span class='text'>Editar</span>
+                                                    </a>
+                                                    <a href='#' class='btn btn-danger btn-icon-split'>
+                                                        <span class='icon text-white-50'>
+                                                            <i class='fas fa-trash'></i>
+                                                        </span>
+                                                        <span class='text'>Remover</span>
+                                                    </a>
+                                                    </td>".
+                                             " </tr>";
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
