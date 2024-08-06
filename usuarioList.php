@@ -297,7 +297,7 @@
                                                         </span>
                                                         <span class='text'>Editar</span>
                                                     </a>
-                                                    <a href='#' class='btn btn-danger btn-icon-split'>
+                                                    <a href='./controle/usuarioControl.php?idDel=".$item->getId()."' class='btn btn-danger btn-icon-split'>
                                                         <span class='icon text-white-50'>
                                                             <i class='fas fa-trash'></i>
                                                         </span>

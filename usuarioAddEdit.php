@@ -275,11 +275,17 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <form action="controle/usuarioControl.php" method="post">
+                                    <input type="hidden" name="id" 
+                                           value="<?php echo $obj==NULL?"0":$obj->getId(); ?>"/>
                                     <div>
-                                        Nome: <input type="text" value="<?php echo $obj==NULL?"":$obj->getNome(); ?>" name="nome" class="form-control mb-2"/>
+                                        Nome: 
+                                        <input type="text" name="nome" class="form-control mb-2"
+                                        value="<?php echo $obj==NULL?"":$obj->getNome(); ?>" />
                                     </div>
                                     <div>
-                                        E-mail:<input type="email" value="<?php echo $obj==NULL?"":$obj->getEmail(); ?>" name="email" class="form-control mb-2"/>
+                                        E-mail:
+                                        <input type="email" name="email" class="form-control mb-2"
+                                        value="<?php echo $obj==NULL?"":$obj->getEmail(); ?>" />
                                     </div>
                                     <div>
                                         Senha: <input type="password" name="senha" class="form-control mb-2"/>
@@ -289,7 +295,9 @@
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-save"></i>
                                             </span>
-                                            <span class="text">Salvar</span>
+                                            <span class="text">
+                                                <?php echo $obj==NULL?"Salvar":"Atualizar"; ?>
+                                            </span>
                                         </button>
                                     </div>
                                 </form>

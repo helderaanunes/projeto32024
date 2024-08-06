@@ -63,4 +63,30 @@ class UsuarioDAO {
             print "Erro ao executar a função de salvar" . $e->getMessage();
         }
     }
+    public function update($usuario) {
+        try {
+            $sql = "update usuario set nome=:nome ,"
+                    . "email=:email ,login=:login,senha=:senha "
+                    . " where id = :id";
+            $p_sql = BDPDO::getInstance()->prepare($sql);
+            $p_sql->bindValue(":nome", $usuario->getNome());
+            $p_sql->bindValue(":email", $usuario->getEmail());
+            $p_sql->bindValue(":login", $usuario->getLogin());
+            $p_sql->bindValue(":senha", $usuario->getSenha());
+            $p_sql->bindValue(":id", $usuario->getId());
+            return $p_sql->execute();
+        } catch (Exception $e) {
+            print "Erro ao executar a função de atualizar " . $e->getMessage();
+        }
+    }
+    public function delete($id) {
+        try {
+            $sql = "delete from usuario where id = :id";
+            $p_sql = BDPDO::getInstance()->prepare($sql);
+            $p_sql->bindValue(":id", $id);
+            return $p_sql->execute();
+        } catch (Exception $e) {
+            print "Erro ao executar a função de remover " . $e->getMessage();
+        }
+    }
 }
